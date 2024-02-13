@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ContactController;
@@ -33,6 +34,10 @@ Route::post('/subscriber/store', [SubscriberController::class, 'store'])->name('
 
 //contact store route
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+
+//Blog Route
+Route::resource('blogs', BlogController::class);
+
 
 // Route::get('/', function () {
 //     return view('welcome');
