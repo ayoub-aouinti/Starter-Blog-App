@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->only(['create']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->only(['create']);
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -27,11 +27,12 @@ class BlogController extends Controller
      */
     public function create()
     {
-        // if (Auth::check()) {
-        // }
-        // abort(403);
-        $categories = Category::get();
-        return view('theme.blogs.create', compact('categories'));
+        if (Auth::check()) {
+            $categories = Category::get();
+            return view('theme.blogs.create', compact('categories'));
+        }
+        abort(403);
+
     }
 
     /**
@@ -52,9 +53,9 @@ class BlogController extends Controller
         $data['user_id'] = Auth::user()->id;
 
         // create new blog record
-        Blog::created($data);
+        Blog::create($data);
 
-        return back()->with('blogCreatestatus', 'Your blog created successfully');
+        return back()->with('blogCreateStatus', 'Your blog created successfully');
     }
 
     /**
@@ -62,7 +63,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        return view('theme.single-blog', compact('blog'));
     }
 
     /**
@@ -87,5 +88,17 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         //
+    }
+
+    /**
+     * Display all user blogs.
+     */
+    public function myBlogs()
+    {
+        if (Auth::check()) {
+            $blogs = Blog::where('user_id', Auth::user()->id)->paginate(10);
+            return view('theme.blogs.my-blogs', compact('blogs'));
+        }
+        abort(403);
     }
 }

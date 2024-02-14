@@ -12,9 +12,9 @@
         <div class="container">
         <div class="row">
             <div class="col-12">
-                @if (session('blogCreatestatus'))
+                @if (session('blogCreateStatus'))
                     <div class="alert alert-success">
-                        {{ session('blogCreatestatus') }}
+                        {{ session('blogCreateStatus') }}
                     </div>
                 @endif
                 <form action="{{ route('blogs.store') }}" class="form-contact contact_form" action="contact_process.php" method="post"
@@ -42,9 +42,9 @@
                         <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
                     </div>
                     <div class="form-group">
-                        <textarea class="w-100 border" name="description" placeholder="Enter your blog title" rows="5">
-                            {{ old('description') }}</textarea>
-                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        <textarea class="w-100 border" name="desctiption" placeholder="Enter your blog title" rows="5">
+                            {{ old('desctiption') }}</textarea>
+                        <x-input-error :messages="$errors->get('desctiption')" class="mt-2" />
                     </div>
 
                     <div class="form-group text-center text-md-right mt-3">
