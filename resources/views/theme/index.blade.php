@@ -31,7 +31,7 @@
                         <img class="card-img rounded-0" src="{{ asset('storage')}}/blogs/{{ $blog->image }}" alt="" height="150px">
                     </div>
                     <div class="blog__slide__content">
-                        <a class="blog__slide__label" href="{{ route('theme.category', ['id' => $blog->$category->id ]) }}">{{ $blog->category->name }}</a>
+                        <a class="blog__slide__label" href="{{ route('theme.category', ['id' => $blog->category->id ]) }}">{{ $blog->category->name }}</a>
                         <h3><a href="{{ route('blogs.show', ['blog' => $blog]) }}">{{ $blog->name }}</a></h3>
                         <p>{{ $blog->created_at->format('d M Y') }}</p>
                     </div>
